@@ -1,0 +1,324 @@
+  [1m[35m (141.2ms)[0m  [1m[35mCREATE DATABASE "URLShortener_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (51.6ms)[0m  [1m[35mCREATE DATABASE "URLShortener_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (29.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20200302021927)
+  [1m[35m (2.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "premium" boolean DEFAULT FALSE, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200302021927_create_users.rb:3
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  ↳ db/migrate/20200302021927_create_users.rb:8
+  [1m[36mActiveRecord::SchemaMigration Create (2.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200302021927"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-02 02:26:32.954566"], ["updated_at", "2020-03-02 02:26:32.954566"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateShortenedUrls (20200302033932)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "shortened_urls" ("id" bigserial primary key, "long_url" character varying NOT NULL, "short_url" character varying NOT NULL, "submitter_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200302033932_create_shortened_urls.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_shortened_urls_on_short_url" ON "shortened_urls"  ("short_url")[0m
+  ↳ db/migrate/20200302033932_create_shortened_urls.rb:10
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_shortened_urls_on_submitter_id" ON "shortened_urls"  ("submitter_id")[0m
+  ↳ db/migrate/20200302033932_create_shortened_urls.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200302033932"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (3.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "turan@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "turan@gmail.com"], ["created_at", "2020-03-02 05:45:28.498083"], ["updated_at", "2020-03-02 05:45:28.498083"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "turan@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "irsan@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "irsan@gmail.com"], ["created_at", "2020-03-02 05:46:32.113190"], ["updated_at", "2020-03-02 05:46:32.113190"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Exists (4.7ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "hello"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.6ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.extra_super_long_url.com"], ["short_url", "hello"], ["submitter_id", 1], ["created_at", "2020-03-02 05:52:36.580506"], ["updated_at", "2020-03-02 05:52:36.580506"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "hello"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateVisits (20200302062916)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "visits" ("id" bigserial primary key, "user_id" integer NOT NULL, "shortened_url_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200302062916_create_visits.rb:3
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_visits_on_user_id" ON "visits"  ("user_id")[0m
+  ↳ db/migrate/20200302062916_create_visits.rb:9
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_visits_on_shortened_url_id" ON "visits"  ("shortened_url_id")[0m
+  ↳ db/migrate/20200302062916_create_visits.rb:10
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200302062916"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ned@appacademy.io"], ["LIMIT", 1]]
+  ↳ bin/cli:32
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ned@appacademy.io"], ["LIMIT", 1]]
+  ↳ bin/cli:32
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ned@appacademy.io"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "ned@appacademy.io"], ["created_at", "2020-03-03 03:41:59.794549"], ["updated_at", "2020-03-03 03:41:59.794549"]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bed@appacademy.io"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "bed@appacademy.io"], ["created_at", "2020-03-03 03:41:59.798776"], ["updated_at", "2020-03-03 03:41:59.798776"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "red@appacademy.io"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "red@appacademy.io"], ["created_at", "2020-03-03 03:41:59.800884"], ["updated_at", "2020-03-03 03:41:59.800884"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ned@appacademy.io"], ["LIMIT", 1]]
+  ↳ bin/cli:32
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "b7K9ifi7tV3Q5s4r_aychQ"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:45
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/shortened_url.rb:35
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:35
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "b7K9ifi7tV3Q5s4r_aychQ"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:35
+  [1m[36mShortenedUrl Create (0.9ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "http://www.appacademy.io"], ["short_url", "b7K9ifi7tV3Q5s4r_aychQ"], ["submitter_id", 3], ["created_at", "2020-03-03 03:42:41.350395"], ["updated_at", "2020-03-03 03:42:41.350395"]]
+  ↳ app/models/shortened_url.rb:35
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/shortened_url.rb:35
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ned@appacademy.io"], ["LIMIT", 1]]
+  ↳ bin/cli:32
+  [1m[36mShortenedUrl Load (0.5ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "b7K9ifi7tV3Q5s4r_aychQ"], ["LIMIT", 1]]
+  ↳ bin/cli:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/visit.rb:23
+  [1m[36mShortenedUrl Load (0.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/visit.rb:23
+  [1m[36mVisit Create (3.1ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["shortened_url_id", 2], ["created_at", "2020-03-03 03:43:23.427203"], ["updated_at", "2020-03-03 03:43:23.427203"]]
+  ↳ app/models/visit.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:23
+  [1m[36mShortenedUrl Load (0.5ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "Pm6T7vWIhTWfMzLaT02YHQ"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Load (0.4ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "b7K9ifi7tV3Q5s4r_aychQ"], ["LIMIT", 1]]
+  [1m[36mVisit Load (0.5ms)[0m  [1m[34mSELECT "visits".* FROM "visits" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateTaggings (20200303040706)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "taggings" ("id" bigserial primary key, "tag_topic_id" integer NOT NULL, "shortened_url_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200303040706_create_taggings.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_taggings_on_tag_topic_id_and_shortened_url_id" ON "taggings"  ("tag_topic_id", "shortened_url_id")[0m
+  ↳ db/migrate/20200303040706_create_taggings.rb:9
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_taggings_on_shortened_url_id" ON "taggings"  ("shortened_url_id")[0m
+  ↳ db/migrate/20200303040706_create_taggings.rb:10
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200303040706"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTagTopics (20200303040731)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "tag_topics" ("id" bigserial primary key, "name" character varying NOT NULL)[0m
+  ↳ db/migrate/20200303040731_create_tag_topics.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200303040731"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4762635147840476445)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jefferson@cats.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "premium", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "jefferson@cats.com"], ["premium", true], ["created_at", "2020-03-03 05:18:12.693228"], ["updated_at", "2020-03-03 05:18:12.693228"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "muenster@cats.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "muenster@cats.com"], ["created_at", "2020-03-03 05:18:12.712256"], ["updated_at", "2020-03-03 05:18:12.712256"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "7CpTc0b65jXcR3FphxFHVg"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "7CpTc0b65jXcR3FphxFHVg"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.8ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.boxes.com"], ["short_url", "7CpTc0b65jXcR3FphxFHVg"], ["submitter_id", 6], ["created_at", "2020-03-03 05:18:12.747577"], ["updated_at", "2020-03-03 05:18:12.747577"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "Nn2MPoo1rPdLaPrKZDM0Tg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "Nn2MPoo1rPdLaPrKZDM0Tg"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.3ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.meowmix.com"], ["short_url", "Nn2MPoo1rPdLaPrKZDM0Tg"], ["submitter_id", 7], ["created_at", "2020-03-03 05:18:12.757390"], ["updated_at", "2020-03-03 05:18:12.757390"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "FhXdQIa1ii9IgeDgBF8CmA"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "FhXdQIa1ii9IgeDgBF8CmA"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.3ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.smallrodents.com"], ["short_url", "FhXdQIa1ii9IgeDgBF8CmA"], ["submitter_id", 7], ["created_at", "2020-03-03 05:18:12.767071"], ["updated_at", "2020-03-03 05:18:12.767071"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Load (0.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mVisit Create (0.9ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 6], ["shortened_url_id", 3], ["created_at", "2020-03-03 05:18:12.799989"], ["updated_at", "2020-03-03 05:18:12.799989"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Load (0.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" WHERE "shortened_urls"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mVisit Create (0.3ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 6], ["shortened_url_id", 4], ["created_at", "2020-03-03 05:18:12.812830"], ["updated_at", "2020-03-03 05:18:12.812830"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Load (0.3ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (2.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jefferson@cats.com"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "muenster@cats.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mShortenedUrl Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "sMUX6INheKBzyCDLpHmRgA"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "sMUX6INheKBzyCDLpHmRgA"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.3ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.boxes.com"], ["short_url", "sMUX6INheKBzyCDLpHmRgA"], ["submitter_id", 6], ["created_at", "2020-03-03 05:22:09.017827"], ["updated_at", "2020-03-03 05:22:09.017827"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "_SlMjD5mPBO9W3AT2JZdqw"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "_SlMjD5mPBO9W3AT2JZdqw"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.4ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.boxes.com"], ["short_url", "_SlMjD5mPBO9W3AT2JZdqw"], ["submitter_id", 6], ["created_at", "2020-03-03 05:22:12.946164"], ["updated_at", "2020-03-03 05:22:12.946164"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "LPHrdhkzGQmbY1XYO7xGeA"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "LPHrdhkzGQmbY1XYO7xGeA"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.5ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.boxes.com"], ["short_url", "LPHrdhkzGQmbY1XYO7xGeA"], ["submitter_id", 6], ["created_at", "2020-03-03 05:22:17.342103"], ["updated_at", "2020-03-03 05:22:17.342103"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "ahSoLdwYxahM06Dg5aH3Wg"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."short_url" = $1 LIMIT $2[0m  [["short_url", "ahSoLdwYxahM06Dg5aH3Wg"], ["LIMIT", 1]]
+  [1m[36mShortenedUrl Create (0.5ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "submitter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "www.boxes.com"], ["short_url", "ahSoLdwYxahM06Dg5aH3Wg"], ["submitter_id", 6], ["created_at", "2020-03-03 05:22:18.877297"], ["updated_at", "2020-03-03 05:22:18.877297"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Load (0.7ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls"[0m
+  [1m[36mShortenedUrl Load (10.7ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."submitter_id" LEFT JOIN visits ON visits.shortened_url_id = shortened_urls.id WHERE ((shortened_urls.id IN (
+        SELECT shortened_urls.id
+        FROM shortened_urls
+        JOIN visits
+        ON visits.shortened_url_id = shortened_urls.id
+        GROUP BY shortened_urls.id
+        HAVING MAX(visits.created_at) < '2020-03-03 05:14:15 UTC'
+      ) OR (
+        visits.id IS NULL and shortened_urls.created_at < '2020-03-03 05:14:15 UTC'
+      )) AND users.premium = 'f')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisit Load (0.3ms)[0m  [1m[34mSELECT "visits".* FROM "visits" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 2]]
+  [1m[36mVisit Destroy (2.0ms)[0m  [1m[31mDELETE FROM "visits" WHERE "visits"."id" = $1[0m  [["id", 1]]
+  [1m[36mShortenedUrl Destroy (0.2ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisit Load (0.2ms)[0m  [1m[34mSELECT "visits".* FROM "visits" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 1]]
+  [1m[36mShortenedUrl Destroy (0.2ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Load (2.0ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."submitter_id" LEFT JOIN visits ON visits.shortened_url_id = shortened_urls.id WHERE ((shortened_urls.id IN (
+        SELECT shortened_urls.id
+        FROM shortened_urls
+        JOIN visits
+        ON visits.shortened_url_id = shortened_urls.id
+        GROUP BY shortened_urls.id
+        HAVING MAX(visits.created_at) < '2020-03-03 05:23:55 UTC'
+      ) OR (
+        visits.id IS NULL and shortened_urls.created_at < '2020-03-03 05:23:55 UTC'
+      )) AND users.premium = 'f')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisit Load (0.3ms)[0m  [1m[34mSELECT "visits".* FROM "visits" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 4]]
+  [1m[36mVisit Destroy (0.3ms)[0m  [1m[31mDELETE FROM "visits" WHERE "visits"."id" = $1[0m  [["id", 3]]
+  [1m[36mShortenedUrl Destroy (0.3ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 4]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisit Load (0.2ms)[0m  [1m[34mSELECT "visits".* FROM "visits" WHERE "visits"."shortened_url_id" = $1[0m  [["shortened_url_id", 5]]
+  [1m[36mShortenedUrl Destroy (0.3ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls"[0m
